@@ -6,6 +6,8 @@ from entities import (
     check_name, get_names,save_outputs, Status
 )
 
+# Set concurrency based on how many proxies you have
+
 THREAD_CONCURRENCY = 25
 
 def main():
