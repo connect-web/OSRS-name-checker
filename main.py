@@ -9,19 +9,24 @@ from entities import (
 THREAD_CONCURRENCY = 25
 
 def main():
-    filename = 'high_risk_bossing.csv'
+    # get all files in data/input
+    filenames = [
+        file
+        for file in os.listdir(os.path.join('data', 'input'))
+        if not os.path.isdir(file) # ignore folders.
+    ]
 
-    # read file and load usernames
-    usernames = get_names(filename)
+    for filename in filenames:
+        # read file and load usernames
+        usernames = get_names(filename)
 
-    print(f'checking {len(usernames)} users.')
+        print(f'checking {len(usernames)} users.')
 
-    # check hiscores API to see if usernames exist
-    valid, banned = check_names(usernames)
+        # check hiscores API to see if usernames exist
+        valid, banned = check_names(usernames)
 
-    # save responses to valid, banned files respectively.
-    save_outputs(filename, valid, banned)
-
+        # save responses to valid, banned files respectively.
+        save_outputs(filename, valid, banned)
 
 
 
